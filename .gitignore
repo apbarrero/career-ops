@@ -1,6 +1,7 @@
 # Personal data (user fills these)
 cv.md
 data/applications.md
+data/applications.md.bak
 data/pipeline.md
 data/scan-history.tsv
 data/parser-output/**/*.json
@@ -18,6 +19,11 @@ batch/tracker-additions/**/*.tsv
 !batch/tracker-additions/.gitkeep
 jds/*
 !jds/.gitkeep
+
+# Interview prep: company-specific files are private (names, contacts, intel)
+# story-bank.md is tracked intentionally — it's a transferable skill asset
+interview-prep/[0-9]*.md
+tmp/
 
 # Writing samples (user's personal files — never committed)
 writing-samples/*
