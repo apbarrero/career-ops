@@ -45,6 +45,7 @@ const PORTALS_PATH = process.env.CAREER_OPS_PORTALS || 'portals.yml';
 const SCAN_HISTORY_PATH = 'data/scan-history.tsv';
 const PIPELINE_PATH = 'data/pipeline.md';
 const APPLICATIONS_PATH = 'data/applications.md';
+const SCAN_LAST_RUN_PATH = 'data/scan-last-run.json';
 const PROVIDERS_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'providers');
 
 // Ensure required directories exist (fresh setup)
@@ -545,6 +546,13 @@ async function main() {
   if (!dryRun && verifiedOffers.length > 0) {
     appendToPipeline(verifiedOffers);
     appendToScanHistory(verifiedOffers, date);
+  }
+  if (!dryRun) {
+    writeFileSync(SCAN_LAST_RUN_PATH, JSON.stringify({
+      date,
+      added: verifiedOffers.length,
+      skipped: totalDupes + expiredOffers.length + droppedOffers.length + invalidOffers.length,
+    }, null, 2) + '\n', 'utf-8');
   }
   if (!dryRun && expiredOffers.length > 0) {
     appendToScanHistory(expiredOffers, date, 'skipped_expired');

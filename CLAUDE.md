@@ -279,6 +279,12 @@ Default modes are in `modes/` (English). Additional language-specific modes are 
 
 ---
 
+## Pipeline Freshness -- MANDATORY
+
+**NEVER report the pipeline as empty without first checking `data/scan-last-run.json`.** If that file exists and `date` matches today, the scan has already run and may have added offers. Always re-read `data/pipeline.md` fresh in the same operation — never use a result from earlier in the session. If the scan ran today, say so and show the pending count before processing.
+
+---
+
 ## Offer Verification -- MANDATORY
 
 **NEVER trust WebSearch/WebFetch to verify if an offer is still active.** ALWAYS use Playwright:

@@ -4,6 +4,8 @@ Process job URLs stored in `data/pipeline.md`. The user adds URLs at any time an
 
 ## Workflow
 
+0. **Check last scan run first**: Read `data/scan-last-run.json` (if it exists). If `date` matches today, note how many items the scan added — this primes you to expect pending items even if a previous check showed zero. Always re-read `data/pipeline.md` fresh at this step; never use a cached result from earlier in the same session.
+
 1. **Read** `data/pipeline.md` → search for `- [ ]` items in the "Pending" section
 2. **For each pending URL**:
    a. Calculate the next sequential `REPORT_NUM` (read `reports/`, take the highest number + 1)
